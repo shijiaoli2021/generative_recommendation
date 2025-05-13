@@ -109,11 +109,10 @@ class RqVae(nn.Layer):
             quantize_loss
         )
 
-    def forward(self, batch, gumbel_t:float = 0.001):
-        x = batch.x
+    def forward(self, x, gumbel_t:float = 0.001)->RqVaeLoss:
 
         # quantize
-        quantize = self.get_semantic_ids(batch, gumbel_t)
+        quantize = self.get_semantic_ids(x, gumbel_t)
         embs, residuals = quantize.embeddings, quantize.residuals
 
         # reconstruction loss

@@ -19,7 +19,7 @@ class ItemDataset(Dataset):
         return len(self.item_embeddings)
 
     def __getitem__(self, idx):
-        return self.item_embeddings[idx]
+        return paddle.to_tensor(self.item_embeddings[idx], dtype="float32")
 
 
 
